@@ -3,8 +3,7 @@
     "description": "UsersManager plugin for CakePHP",
     "type": "cakephp-plugin",
     "require": {
-        "php": ">=5.4.16",
-        "cakephp/cakephp": "~3.0"
+        "php": ">=5.4.16"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
