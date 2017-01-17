@@ -85,7 +85,7 @@ class UsersTable extends Table {
                 });
 
         $validator
-                ->requirePresence('photo', 'create')
+                ->requirePresence('photo', false)
                 ->allowEmpty('photo', 'update');
 
         $validator

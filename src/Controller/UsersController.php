@@ -34,6 +34,7 @@ class UsersController extends AppController {
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function view($id = null) {
+        $this->viewBuilder()->layout('admin');
         $user = $this->Users->get($id, [
             'contain' => ['Roles']
         ]);
@@ -128,7 +129,6 @@ class UsersController extends AppController {
             if ($user) {
 
                 $this->Auth->setUser($user);
-                $this->_setCookie();
                 return $this->redirect($this->Auth->redirectUrl());
             }
 
