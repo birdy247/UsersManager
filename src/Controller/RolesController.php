@@ -1,6 +1,7 @@
 <?php
 namespace UsersManager\Controller;
 
+use Cake\Event\Event;
 use UsersManager\Controller\AppController;
 
 /**
@@ -10,6 +11,16 @@ use UsersManager\Controller\AppController;
  */
 class RolesController extends AppController
 {
+
+    public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
+        $this->Auth->deny();
+    }
+
+    public function isAuthorized($user)
+    {
+        return parent::isAuthorized($user);
+    }
 
     /**
      * Index method

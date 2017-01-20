@@ -2,6 +2,7 @@
 
 namespace UsersManager\Controller;
 
+use Cake\Event\Event;
 use UsersManager\Controller\AppController;
 use Cake\Network\Session;
 
@@ -10,14 +11,26 @@ use Cake\Network\Session;
  *
  * @property \UsersManager\Model\Table\UsersTable $Users
  */
-class UsersController extends AppController {
+class UsersController extends AppController
+{
+
+    public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
+        $this->Auth->deny();
+    }
+
+    public function isAuthorized($user)
+    {
+        return parent::isAuthorized($user);
+    }
 
     /**
      * Index method
      *
      * @return void
      */
-    public function admin() {
+    public function admin()
+    {
         $this->viewBuilder()->layout('admin');
         $this->paginate = [
             'contain' => ['Roles']
@@ -33,7 +46,8 @@ class UsersController extends AppController {
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function view($id = null) {
+    public function view($id = null)
+    {
         $this->viewBuilder()->layout('admin');
         $user = $this->Users->get($id, [
             'contain' => ['Roles']
@@ -47,7 +61,8 @@ class UsersController extends AppController {
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add() {
+    public function add()
+    {
         $this->viewBuilder()->layout('admin');
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
@@ -72,7 +87,8 @@ class UsersController extends AppController {
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null) {
+    public function edit($id = null)
+    {
         $this->viewBuilder()->layout('admin');
         $user = $this->Users->get($id, [
             'contain' => []
@@ -98,7 +114,8 @@ class UsersController extends AppController {
      * @return void Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function delete($id = null) {
+    public function delete($id = null)
+    {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
@@ -109,7 +126,8 @@ class UsersController extends AppController {
         return $this->redirect(['action' => 'index']);
     }
 
-    public function login() {
+    public function login()
+    {
 
         $this->viewBuilder()->layout('login');
         //If a user is already logged in, redirect them to their profile.
@@ -140,7 +158,8 @@ class UsersController extends AppController {
      * Logout Method
      * @return type
      */
-    public function logout() {
+    public function logout()
+    {
         return $this->redirect($this->Auth->logout());
     }
 
