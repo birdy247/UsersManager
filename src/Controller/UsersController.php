@@ -31,7 +31,7 @@ class UsersController extends AppController
      */
     public function admin()
     {
-        $this->viewBuilder()->layout('admin');
+        //$this->viewBuilder()->layout('admin');
         $this->paginate = [
             'contain' => ['Roles']
         ];
@@ -48,7 +48,7 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
-        $this->viewBuilder()->layout('admin');
+        //$this->viewBuilder()->layout('admin');
         $user = $this->Users->get($id, [
             'contain' => ['Roles']
         ]);
@@ -63,7 +63,7 @@ class UsersController extends AppController
      */
     public function add()
     {
-        $this->viewBuilder()->layout('admin');
+        //$this->viewBuilder()->layout('admin');
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->data);
@@ -89,7 +89,7 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        $this->viewBuilder()->layout('admin');
+        //$this->viewBuilder()->layout('admin');
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
@@ -129,7 +129,7 @@ class UsersController extends AppController
     public function login()
     {
 
-        $this->viewBuilder()->layout('login');
+        //$this->viewBuilder()->layout('login');
         //If a user is already logged in, redirect them to their profile.
         if ($this->Auth->user()) {
             $this->redirect($this->referer());

@@ -34,7 +34,7 @@ class UsersTable extends Table {
             'className' => 'UsersManager.Roles'
         ]);
 
-        $this->addBehavior('Proffer.Proffer', [
+/*        $this->addBehavior('Proffer.Proffer', [
             'photo' => [// The name of your upload field
                 'root' => WWW_ROOT . 'files', // Customise the root upload folder here, or omit to use the default
                 'dir' => 'photo_dir', // The name of the field to store the folder
@@ -49,7 +49,7 @@ class UsersTable extends Table {
                 ],
                 'thumbnailMethod' => 'imagick'  // Options are Imagick, Gd or Gmagick
             ]
-        ]);
+        ]);*/
     }
 
     /**
